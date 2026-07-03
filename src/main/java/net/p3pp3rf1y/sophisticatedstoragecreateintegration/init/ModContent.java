@@ -1,6 +1,8 @@
 package net.p3pp3rf1y.sophisticatedstoragecreateintegration.init;
 
 import com.simibubi.create.api.behaviour.movement.MovementBehaviour;
+import com.simibubi.create.api.contraption.BlockMovementChecks;
+import com.simibubi.create.api.contraption.BlockMovementChecks.CheckResult;
 import com.simibubi.create.api.contraption.storage.item.MountedItemStorageType;
 import com.simibubi.create.api.contraption.transformable.MovedBlockTransformerRegistries;
 import com.simibubi.create.api.registry.CreateBuiltInRegistries;
@@ -71,6 +73,8 @@ public class ModContent {
 			MountedItemStorageType.REGISTRY.register(block, SOPHISTICATED_MOUNTED_STORAGE_TYPE.get());
 			MovementBehaviour.REGISTRY.register(block, SophisticatedStorageMovementBehaviour.INSTANCE);
 		});
+		BlockMovementChecks
+				.registerMovementAllowedCheck((state, level, pos) -> state.getBlock() instanceof StorageBlockBase ? CheckResult.SUCCESS : CheckResult.PASS);
 		MovedBlockTransformerRegistries.BLOCK_TRANSFORMERS.register(ModBlocks.CHEST.get(), SophisticatedChestBlockTransformer::transform);
 		MovedBlockTransformerRegistries.BLOCK_TRANSFORMERS.register(ModBlocks.COPPER_CHEST.get(), SophisticatedChestBlockTransformer::transform);
 		MovedBlockTransformerRegistries.BLOCK_TRANSFORMERS.register(ModBlocks.IRON_CHEST.get(), SophisticatedChestBlockTransformer::transform);
