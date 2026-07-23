@@ -44,6 +44,7 @@ import net.p3pp3rf1y.sophisticatedcore.init.ModCoreDataComponents;
 import net.p3pp3rf1y.sophisticatedcore.settings.itemdisplay.ItemDisplaySettingsCategory;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.UpgradeItemBase;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
+import net.p3pp3rf1y.sophisticatedcore.util.NoopStorageWrapper;
 import net.p3pp3rf1y.sophisticatedcore.util.WorldHelper;
 import net.p3pp3rf1y.sophisticatedstorage.block.*;
 import net.p3pp3rf1y.sophisticatedstorage.entity.MovingStorageWrapper;
@@ -393,6 +394,9 @@ public class MountedSophisticatedStorage extends MountedStorageBase {
 
 	@Override
 	protected IItemHandlerModifiable getExternalItemHandler() {
+		if (getStorageHolder().isDoubleChest() && !getStorageHolder().isMainStorage()) {
+			return NoopStorageWrapper.INSTANCE.getInventoryForInputOutput();
+		}
 		return getStorageHolder().getMainStorageWrapper().getInventoryForInputOutput();
 	}
 
