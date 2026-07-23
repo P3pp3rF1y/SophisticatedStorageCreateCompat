@@ -34,6 +34,7 @@ import net.p3pp3rf1y.sophisticatedcore.compat.create.MountedStorageData;
 import net.p3pp3rf1y.sophisticatedcore.settings.itemdisplay.ItemDisplaySettingsCategory;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.UpgradeItemBase;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
+import net.p3pp3rf1y.sophisticatedcore.util.NoopStorageWrapper;
 import net.p3pp3rf1y.sophisticatedcore.util.WorldHelper;
 import net.p3pp3rf1y.sophisticatedstorage.block.*;
 import net.p3pp3rf1y.sophisticatedstorage.block.BarrelBlockEntity;
@@ -349,7 +350,9 @@ public class MountedSophisticatedStorage extends MountedStorageBase {
 
 	@Override
 	protected IItemHandlerModifiable getExternalItemHandler() {
-		return getStorageHolder().getMainStorageWrapper().getInventoryForInputOutput();
+		return getStorageHolder().isMainStorage()
+				? getStorageHolder().getMainStorageWrapper().getInventoryForInputOutput()
+				: NoopStorageWrapper.INSTANCE.getInventoryForInputOutput();
 	}
 
 	public void openMenu(ServerPlayer player, int contraptionEntityId, BlockPos localPos) {

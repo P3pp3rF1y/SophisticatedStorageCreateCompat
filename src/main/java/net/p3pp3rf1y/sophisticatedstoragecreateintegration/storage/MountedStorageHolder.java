@@ -341,6 +341,10 @@ public class MountedStorageHolder extends StorageHolderBase {
 		return otherHalfStorageWrapper.get();
 	}
 
+	public boolean isMainStorage() {
+		return isMainStorage;
+	}
+
 	public void updateState() {
 		if (getEntity() instanceof AbstractContraptionEntity contraptionEntity
 				&& getSyncedStorageStack().getItem() instanceof StorageBlockItem storageBlockItem) {
