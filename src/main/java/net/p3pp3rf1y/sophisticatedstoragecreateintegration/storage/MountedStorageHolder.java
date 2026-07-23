@@ -374,6 +374,10 @@ public class MountedStorageHolder extends StorageHolderBase {
 		return isChest() && chestOtherPartPos != BlockPos.ZERO;
 	}
 
+	public boolean isMainStorage() {
+		return isMainStorage;
+	}
+
 	@Override
 	public void setShouldBeOpen(boolean shouldBeOpen) {
 		super.setShouldBeOpen(shouldBeOpen);
