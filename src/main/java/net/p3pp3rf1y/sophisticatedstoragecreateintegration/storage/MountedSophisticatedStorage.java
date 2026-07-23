@@ -51,6 +51,7 @@ import net.p3pp3rf1y.sophisticatedcore.renderdata.RenderData;
 import net.p3pp3rf1y.sophisticatedcore.settings.itemdisplay.ItemDisplaySettingsCategory;
 import net.p3pp3rf1y.sophisticatedcore.upgrades.UpgradeItemBase;
 import net.p3pp3rf1y.sophisticatedcore.util.NBTHelper;
+import net.p3pp3rf1y.sophisticatedcore.util.NoopStorageWrapper;
 import net.p3pp3rf1y.sophisticatedcore.util.ValueIOHelper;
 import net.p3pp3rf1y.sophisticatedcore.util.WorldHelper;
 import net.p3pp3rf1y.sophisticatedstorage.block.*;
@@ -410,7 +411,8 @@ public class MountedSophisticatedStorage extends MountedStorageBase {
 
 	@Override
 	protected ResourceHandler<ItemResource> getExternalItemHandler() {
-		return getStorageHolder().getMainStorageWrapper().getInventoryForInputOutput();
+		return getStorageHolder().isMainStorage() ? getStorageHolder().getMainStorageWrapper().getInventoryForInputOutput()
+				: NoopStorageWrapper.INSTANCE.getInventoryForInputOutput();
 	}
 
 	public OptionalInt openMenu(ServerPlayer player, int contraptionEntityId, BlockPos localPos) {
