@@ -1,5 +1,6 @@
 package net.p3pp3rf1y.sophisticatedstoragecreateintegration.network;
 
+import net.minecraftforge.network.NetworkDirection;
 import net.p3pp3rf1y.sophisticatedcore.network.PacketHandler;
 import net.p3pp3rf1y.sophisticatedstoragecreateintegration.SophisticatedStorageCreateIntegration;
 
@@ -14,6 +15,6 @@ public class StorageCreatePacketHandler extends PacketHandler {
 	@Override
 	public void registerMessages() {
 		registerMessage(MountedStorageOpennessMessage.class, MountedStorageOpennessMessage::encode, MountedStorageOpennessMessage::decode,
-				MountedStorageOpennessMessage::onMessage);
+				MountedStorageOpennessMessage::onMessage, NetworkDirection.PLAY_TO_CLIENT);
 	}
 }

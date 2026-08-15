@@ -21,6 +21,7 @@ import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.p3pp3rf1y.sophisticatedstorage.block.StorageBlockBase;
@@ -92,7 +93,7 @@ public class ModContent {
 		SafeNbtWriterRegistry.REGISTRY.register(ModBlocks.SHULKER_BOX_BLOCK_ENTITY_TYPE.get(), SophisticatedStorageSafeNbtWriter.INSTANCE);
 		event.enqueueWork(() -> {
 			StoragePacketHandler.INSTANCE.registerMessage(OpenMountedStorageInventoryMessage.class, OpenMountedStorageInventoryMessage::encode,
-					OpenMountedStorageInventoryMessage::decode, OpenMountedStorageInventoryMessage::onMessage);
+					OpenMountedStorageInventoryMessage::decode, OpenMountedStorageInventoryMessage::onMessage, NetworkDirection.PLAY_TO_SERVER);
 		});
 	}
 }
