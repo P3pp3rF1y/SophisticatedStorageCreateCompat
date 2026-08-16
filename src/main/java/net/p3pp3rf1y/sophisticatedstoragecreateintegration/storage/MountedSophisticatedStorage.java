@@ -411,7 +411,8 @@ public class MountedSophisticatedStorage extends MountedStorageBase {
 
 	@Override
 	protected ResourceHandler<ItemResource> getExternalItemHandler() {
-		return getStorageHolder().isMainStorage() ? getStorageHolder().getMainStorageWrapper().getInventoryForInputOutput()
+		return getStorageHolder().isMainStorage()
+				? getStorageHolder().getMainStorageWrapper().getInventoryForInputOutput()
 				: NoopStorageWrapper.INSTANCE.getInventoryForInputOutput();
 	}
 
